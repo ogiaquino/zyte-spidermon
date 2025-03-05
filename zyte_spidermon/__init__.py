@@ -1,3 +1,3 @@
-from .zyte import ZyteJobsComparisonMonitor
-from .utils import Client
+#from zyte_spidermon.jobs_comparison import ZyteJobsComparisonMonitor
+#from zyte_spidermon.utils import Client
 

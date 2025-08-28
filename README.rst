@@ -5,7 +5,7 @@ Zyte Spidermon
 Overview
 ========
 
-Zyte spidermon is a collection of useful tools for data validation, stats monitoring, and notification messages that can be use within Zyte Api ecosystem. This package uses https://github.com/scrapinghub/spidermon to achieve this.
+Zyte spidermon is a collection of useful tools for data validation, stats monitoring, and notification messages that can be use within Zyte. This package is dependent on https://github.com/scrapinghub/spidermon
 
 Requirements
 ============

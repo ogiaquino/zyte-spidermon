@@ -1,7 +1,15 @@
 from .jobs_comparison import (
+                              SPIDERMON_JOBS_COMPARISON,
+                              SPIDERMON_JOBS_COMPARISON_CLOSE_REASONS,
+                              SPIDERMON_JOBS_COMPARISON_STATES,
+                              SPIDERMON_JOBS_COMPARISON_TAGS,
+                              SPIDERMON_JOBS_COMPARISON_THRESHOLD,
+)
+
+__all__ = [
     SPIDERMON_JOBS_COMPARISON,
     SPIDERMON_JOBS_COMPARISON_CLOSE_REASONS,
     SPIDERMON_JOBS_COMPARISON_STATES,
     SPIDERMON_JOBS_COMPARISON_TAGS,
     SPIDERMON_JOBS_COMPARISON_THRESHOLD,
-)
+]

@@ -8,7 +8,7 @@ pytest_plugins = "spidermon.contrib.pytest.plugins.filter_monitors"
 
 @pytest.fixture
 def get_crawler():
-    def _crawler(extended_settings={}):
+    def _crawler(extended_settings=None):
         settings = {
             "SPIDERMON_ENABLED": True,
             "EXTENSIONS": {"spidermon.contrib.scrapy.extensions.Spidermon": 500},

@@ -18,6 +18,7 @@ SPIDERMON_JOBS_COMPARISON_ARGUMENTS_ENABLED = (
     "SPIDERMON_JOBS_COMPARISON_ARGUMENTS_ENABLED"
 )
 
+
 @monitors.name("Jobs Comparison Monitor")
 class ZyteJobsComparisonMonitor(BaseStatMonitor):
     """

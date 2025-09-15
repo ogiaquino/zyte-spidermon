@@ -4,7 +4,6 @@ setup(
     name="zyte_spidermon",
     version="0.0.1",
     url="https://github.com/scrapy-plugins/zyte-spidermon",
-
     # TODO:
     # project_urls={
     #    "Documentation": "https://spidermon.readthedocs.io/",
@@ -12,7 +11,6 @@ setup(
     #    "Tracker": "https://github.com/scrapinghub/spidermon/issues",
     #    "Release notes": "https://spidermon.readthedocs.io/en/latest/changelog.html",
     # },
-
     author="Zyte",
     author_email="opensource@zyte.com",
     description=(
@@ -46,5 +44,5 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: System :: Monitoring",
     ],
-    python_requires=">=3.8",    
+    python_requires=">=3.8",
 )

@@ -1,8 +1,7 @@
 import pytest
+from scrapy import Spider
 from scrapy.crawler import Crawler
 from scrapy.statscollectors import MemoryStatsCollector
-from scrapy import Spider
-
 
 pytest_plugins = "spidermon.contrib.pytest.plugins.filter_monitors"
 

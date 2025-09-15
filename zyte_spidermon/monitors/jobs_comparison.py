@@ -1,16 +1,12 @@
-import datetime
 import json
 import math
 import os
 
-from .utils import Client
-
-from spidermon import Monitor, monitors
+from spidermon import monitors
+from spidermon.contrib.scrapy.monitors.base import BaseStatMonitor
 from spidermon.exceptions import NotConfigured
-from spidermon.utils.settings import getdictorlist
-from spidermon.contrib.monitors.mixins.stats import StatsMonitorMixin
-from spidermon.contrib.scrapy.monitors.base import BaseScrapyMonitor, BaseStatMonitor
 
+from .utils import Client
 
 SPIDERMON_JOBS_COMPARISON = "SPIDERMON_JOBS_COMPARISON"
 SPIDERMON_JOBS_COMPARISON_STATES = "SPIDERMON_JOBS_COMPARISON_STATES"
@@ -137,7 +133,7 @@ class ZyteJobsComparisonMonitor(BaseStatMonitor):
             return []
 
         tags_to_filter = set(desired_tags) & set(current_tags)
-        return list(sorted(tags_to_filter))
+        return sorted(tags_to_filter)
 
     def _get_args_to_filter(self):
         """

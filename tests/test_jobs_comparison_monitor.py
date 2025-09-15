@@ -24,7 +24,7 @@ def mock_jobs(previous_counts):
 def mock_jobs_with_close_reason(previous_job_objs, close_reasons):
     return Mock(
         return_value=[
-            {"items": j["items"], "close_reason":j["close_reason"]}
+            {"items": j["items"], "close_reason": j["close_reason"]}
             for j in previous_job_objs
             if j["close_reason"] in close_reasons
         ]

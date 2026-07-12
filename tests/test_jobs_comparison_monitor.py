@@ -3,16 +3,17 @@ from unittest.mock import Mock, call, patch
 
 import pytest
 from spidermon import MonitorSuite
-from spidermon.contrib.scrapy.monitors import (
+from spidermon.exceptions import NotConfigured
+
+from zyte_spidermon.monitors import jobs_comparison as monitors
+from zyte_spidermon.monitors.jobs_comparison import (
     SPIDERMON_JOBS_COMPARISON,
     SPIDERMON_JOBS_COMPARISON_CLOSE_REASONS,
     SPIDERMON_JOBS_COMPARISON_STATES,
     SPIDERMON_JOBS_COMPARISON_TAGS,
     SPIDERMON_JOBS_COMPARISON_THRESHOLD,
     ZyteJobsComparisonMonitor,
-    monitors,
 )
-from spidermon.exceptions import NotConfigured
 
 
 @pytest.fixture
@@ -172,9 +173,7 @@ def test_jobs_comparison_monitor_get_tags_to_filter(monkeypatch):
 
 def test_jobs_comparison_monitor_get_jobs():
     mock_client = Mock()
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)
@@ -189,9 +188,7 @@ def test_jobs_comparison_monitor_get_jobs():
         mock_client.spider.jobs.list.assert_called_once()
 
     mock_client = Mock()
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)
@@ -206,9 +203,7 @@ def test_jobs_comparison_monitor_get_jobs():
         assert jobs == output
         mock_client.spider.jobs.list.assert_called_once()
 
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)
@@ -223,9 +218,7 @@ def test_jobs_comparison_monitor_get_jobs():
         assert mock_client.spider.jobs.list.call_count == 3
 
     mock_client = Mock()
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)
@@ -241,9 +234,7 @@ def test_jobs_comparison_monitor_get_jobs():
         assert len(jobs) == 50
 
     mock_client = Mock()
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)
@@ -259,9 +250,7 @@ def test_jobs_comparison_monitor_get_jobs():
         assert len(jobs) == 0
 
     mock_client = Mock()
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)
@@ -277,9 +266,7 @@ def test_jobs_comparison_monitor_get_jobs():
         mock_client.spider.jobs.list.assert_called_once()
 
     mock_client = Mock()
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)
@@ -295,9 +282,7 @@ def test_jobs_comparison_monitor_get_jobs():
         mock_client.spider.jobs.list.assert_called_once()
 
     mock_client = Mock()
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)
@@ -313,9 +298,7 @@ def test_jobs_comparison_monitor_get_jobs():
         mock_client.spider.jobs.list.assert_called_once()
 
     mock_client = Mock()
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)
@@ -339,9 +322,7 @@ def test_jobs_comparison_monitor_get_jobs():
         mock_client.spider.jobs.list.assert_called_once()
 
     mock_client = Mock()
-    with patch(
-        "spidermon.contrib.scrapy.monitors.monitors.Client"
-    ) as mock_client_class:
+    with patch("zyte_spidermon.monitors.jobs_comparison.Client") as mock_client_class:
         mock_client_class.return_value = mock_client
         monitor = TestZyteJobsComparisonMonitor()
         monitor._get_tags_to_filter = Mock(side_effect=lambda: None)

@@ -10,7 +10,7 @@ Zyte spidermon is a collection of useful tools for data validation, stats monito
 Requirements
 ============
 
-* Python Version: 3.8, 3.9, 3.10, 3.11 or 3.12
+* Python Version: 3.9, 3.10, 3.11, 3.12 or 3.13
 
 Install
 =======

@@ -6,7 +6,7 @@ from spidermon import monitors
 from spidermon.contrib.scrapy.monitors.base import BaseStatMonitor
 from spidermon.exceptions import NotConfigured
 
-from .utils import Client
+from ..utils import Client
 
 SPIDERMON_JOBS_COMPARISON = "SPIDERMON_JOBS_COMPARISON"
 SPIDERMON_JOBS_COMPARISON_STATES = "SPIDERMON_JOBS_COMPARISON_STATES"
@@ -46,14 +46,14 @@ class ZyteJobsComparisonMonitor(BaseStatMonitor):
     You can also filter which jobs to compare based on their close reason using the
     ``SPIDERMON_JOBS_COMPARISON_CLOSE_REASONS`` setting. The default value is ``()``,
     which doesn't filter any job based on close_reason. To only consider successfully finished jobs,
-    use ``("finished", ) instead.``
+    use ``("finished", )`` instead.
 
     You can also filter which jobs to compare based on the job arguments using the
     ``SPIDERMON_JOBS_COMPARISON_ARGUMENTS`` setting. It will filter any job based on spider_args.
     The job that will have all the desired arguments will be processed.
     Example {"debug_url": "https://www.google.com"} or {"is_full_crawl": True}
     You can enable this filter by setting SPIDERMON_JOBS_COMPARISON_ARGUMENTS_ENABLED as True in the settings.
-    Otherwise, this filter will not be applied
+    Otherwise, this filter will not be applied.
     """
 
     stat_name = "item_scraped_count"

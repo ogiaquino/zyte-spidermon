@@ -5,12 +5,7 @@ Zyte Spidermon
 Overview
 ========
 
-Zyte spidermon is a collection of useful tools for data validation, stats monitoring, and notification messages that can be used within Zyte. This package is dependent on https://github.com/scrapinghub/spidermon
-
-Requirements
-============
-
-* Python Version: 3.10, 3.11, 3.12 or 3.13
+Zyte spidermon is a collection of useful tools for data validation, stats monitoring, and notification messages that can be used within Zyte. This package is dependent on https://github.com/scrapinghub/spidermon and requires Python 3.10+.
 
 Install
 =======

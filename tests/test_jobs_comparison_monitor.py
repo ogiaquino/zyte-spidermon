@@ -9,6 +9,7 @@ from zyte_spidermon.monitors import jobs_comparison as monitors
 from zyte_spidermon.monitors.jobs_comparison import (
     SPIDERMON_JOBS_COMPARISON,
     SPIDERMON_JOBS_COMPARISON_CLOSE_REASONS,
+    SPIDERMON_JOBS_COMPARISON_STAT_NAME,
     SPIDERMON_JOBS_COMPARISON_STATES,
     SPIDERMON_JOBS_COMPARISON_TAGS,
     SPIDERMON_JOBS_COMPARISON_THRESHOLD,
@@ -363,6 +364,55 @@ def test_jobs_comparison_monitor_threshold(
     runner.run(mock_suite, **data)
 
     assert should_raise == bool(runner.result.monitor_results[0].error)
+
+
+@pytest.mark.parametrize(
+    [
+        "custom_stat_value",
+        "inflated_stat_value",
+        "previous_counts",
+        "threshold",
+        "should_raise",
+    ],
+    [
+        # The default stat (item_scraped_count) clears the threshold, but the
+        # configured custom stat doesn't: the monitor should still fail.
+        (80, 200, [100], 0.9, True),
+        # The configured custom stat also clears the threshold.
+        (95, 200, [100], 0.9, False),
+    ],
+)
+def test_jobs_comparison_monitor_custom_stat_name(
+    make_data,
+    mock_suite,
+    custom_stat_value,
+    inflated_stat_value,
+    threshold,
+    should_raise,
+):
+    data = make_data(
+        {
+            SPIDERMON_JOBS_COMPARISON: 1,
+            SPIDERMON_JOBS_COMPARISON_THRESHOLD: threshold,
+            SPIDERMON_JOBS_COMPARISON_STAT_NAME: "non_empty_item_scraped_count",
+        }
+    )
+    data["stats"]["item_scraped_count"] = inflated_stat_value
+    data["stats"]["non_empty_item_scraped_count"] = custom_stat_value
+    runner = data.pop("runner")
+    runner.run(mock_suite, **data)
+
+    assert should_raise == bool(runner.result.monitor_results[0].error)
+
+
+def test_jobs_comparison_monitor_default_stat_name():
+    monitor = TestZyteJobsComparisonMonitor()
+    monitor.data = Mock()
+    monitor.data.crawler.settings.get.return_value = "item_scraped_count"
+    assert monitor.stat_name == "item_scraped_count"
+    monitor.data.crawler.settings.get.assert_called_once_with(
+        SPIDERMON_JOBS_COMPARISON_STAT_NAME, "item_scraped_count"
+    )
 
 
 @pytest.mark.parametrize(

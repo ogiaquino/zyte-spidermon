@@ -17,6 +17,8 @@ SPIDERMON_JOBS_COMPARISON_ARGUMENTS = "SPIDERMON_JOBS_COMPARISON_ARGUMENTS"
 SPIDERMON_JOBS_COMPARISON_ARGUMENTS_ENABLED = (
     "SPIDERMON_JOBS_COMPARISON_ARGUMENTS_ENABLED"
 )
+SPIDERMON_JOBS_COMPARISON_STAT_NAME = "SPIDERMON_JOBS_COMPARISON_STAT_NAME"
+DEFAULT_JOBS_COMPARISON_STAT_NAME = "item_scraped_count"
 
 
 @monitors.name("Jobs Comparison Monitor")
@@ -54,10 +56,24 @@ class ZyteJobsComparisonMonitor(BaseStatMonitor):
     Example {"debug_url": "https://www.google.com"} or {"is_full_crawl": True}
     You can enable this filter by setting SPIDERMON_JOBS_COMPARISON_ARGUMENTS_ENABLED as True in the settings.
     Otherwise, this filter will not be applied.
+
+    By default, the current job is checked against the ``item_scraped_count`` stat. You can
+    check a different stat instead by using the ``SPIDERMON_JOBS_COMPARISON_STAT_NAME`` setting.
+    This is useful, for instance, if your project collects items that don't carry data (e.g. to
+    track visited pages) alongside a separate stat for non-empty items: in that case
+    ``item_scraped_count`` no longer reflects delivered data, so you'd point this monitor at
+    ``non_empty_item_scraped_count`` (or your own equivalent) instead. Note that the historical
+    baseline this monitor compares against is always based on the ``items`` count reported by
+    the Scrapy Cloud jobs API, which counts stored items regardless of this setting.
     """
 
-    stat_name = "item_scraped_count"
     assert_type = ">="
+
+    @property
+    def stat_name(self):
+        return self.crawler.settings.get(
+            SPIDERMON_JOBS_COMPARISON_STAT_NAME, DEFAULT_JOBS_COMPARISON_STAT_NAME
+        )
 
     def run(self, result):
         if (

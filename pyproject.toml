@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "zyte-spidermon"
 version = "0.0.0"
-description = "Zyte spidermon is a collection of useful tools for data validation, stats monitoring, and notification messages that can be used within Zyte"
+description = "Useful tools for data validation, stats monitoring, and notification messages for Scrapy projects running on Zyte Scrapy Cloud"
 readme = "README.rst"
 license = "BSD-3-Clause"
 requires-python = ">=3.10"

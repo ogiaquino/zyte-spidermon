@@ -11,6 +11,7 @@ license = "BSD-3-Clause"
 requires-python = ">=3.10"
 authors = [{ name = "Zyte", email = "opensource@zyte.com" }]
 dependencies = [
+    "scrapinghub>=2.4.0",
     "scrapy>=2.6.0",
     "spidermon>=1.18.0",
 ]

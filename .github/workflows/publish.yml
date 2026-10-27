@@ -33,20 +33,19 @@ jobs:
           path: dist/
 
   publish:
-    name: Publish distribution to Private PyPI
+    name: Upload release to PyPI
     needs:
       - build
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/zyte-spidermon
+    permissions:
+      id-token: write
     steps:
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: python-package-distributions
           path: dist/
-      - name: Publish distribution 📦 to Private PyPI
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_OUTPUT: json
-        run: |
-          pip install awscli
-          aws s3 sync dist/ s3://pkgrepo.scrapinghub.com/python/packages/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
